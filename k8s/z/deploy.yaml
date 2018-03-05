@@ -1,0 +1,16 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: node-all-z
+  namespace: node-test
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: node-all-z
+    spec:
+      containers:
+      - name: node-all-z
+        image: node-all:v1
+        args: ["api/z"]

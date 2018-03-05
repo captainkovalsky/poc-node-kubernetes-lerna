@@ -1,0 +1,16 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: node-all-x
+  namespace: node-test
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: node-all-x
+    spec:
+      containers:
+      - name: node-all-x
+        image: node-all:v1
+        args: ["api/x"]
