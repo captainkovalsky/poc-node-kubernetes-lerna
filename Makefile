@@ -1,18 +1,22 @@
+kspace = minikube --namespace node-test
+kforce_apply = kubectl apply --force=true -f k8s
+
 build:
 	docker build -t node-all:v1 .
+
 clean:
 	git clean -dfx
 
 deploy:
-	kubectl apply --force=true -f k8s/namespace.yaml
-	kubectl apply --force=true -f k8s/x/deploy.yaml
-	kubectl apply --force=true -f k8s/x/service.yaml
-	kubectl apply --force=true -f k8s/y/deploy.yaml
-	kubectl apply --force=true -f k8s/y/service.yaml
-	kubectl apply --force=true -f k8s/z/deploy.yaml
-	kubectl apply --force=true -f k8s/z/service.yaml
+	$(kforce_apply)/namespace.yaml
+	$(kforce_apply)/x/deploy.yaml
+	$(kforce_apply)/x/service.yaml
+	$(kforce_apply)/y/deploy.yaml
+	$(kforce_apply)/y/service.yaml
+	$(kforce_apply)/z/deploy.yaml
+	$(kforce_apply)/z/service.yaml
 
 url:
-	minikube --namespace node-test service node-all-x --url
-	minikube --namespace node-test service node-all-y --url
-	minikube --namespace node-test service node-all-z --url
+	$(kservice) node-all-x --url
+	$(kservice) node-all-y --url
+	$(kservice) node-all-z --url
