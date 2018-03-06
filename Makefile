@@ -1,4 +1,4 @@
-kspace = minikube --namespace node-test
+kservice = minikube --namespace node-test service
 kforce_apply = kubectl apply --force=true -f k8s
 
 build:
